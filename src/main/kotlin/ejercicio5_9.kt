@@ -27,7 +27,9 @@ class Persona(val DNI:String, val cuentas:MutableList<Cuenta> = mutableListOf())
     }
 
     fun addcuenta(nuevacuenta:Cuenta){
-        this.cuentas.add(nuevacuenta)
+        if(cuentas.size<3){
+        this.cuentas.add(nuevacuenta)}
+        else throw Exception {"No puedes añadir más de 3 cuentas"}
     }
 
     fun esmorosa():String{
