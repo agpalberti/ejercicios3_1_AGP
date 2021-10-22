@@ -2,11 +2,11 @@
 class Cuenta(val numerocuenta:String, var saldo:Double = .0){
 
     fun pago(cantidad:Double){
-        saldo -= cantidad
+        this.saldo -= cantidad
     }
 
     fun abono(cantidad: Double){
-        saldo += cantidad
+        this.saldo += cantidad
     }
 
     fun transfer(cantidad:Double, cuentadestino:Cuenta){
@@ -32,7 +32,7 @@ class Persona(val DNI:String, val cuentas:MutableList<Cuenta> = mutableListOf())
 
     fun esmorosa():String{
         for(i in 0..2){
-            if (cuentas[i].saldo<0) return "Es moroso"
+            if (this.cuentas[i].saldo<0) return "Es moroso"
         }
         return "No es moroso"
     }
