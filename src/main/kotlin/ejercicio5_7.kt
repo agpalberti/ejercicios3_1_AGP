@@ -1,6 +1,11 @@
 //Ejercicio 5.7
 
-class Coche(var color:String, val marca: String, val modelo: String, val caballos:Int, val puertas:Byte, val matricula:String){
+class Coche(var color:String, val marca: String, modelo: String, val caballos:Int, val puertas:Byte, val matricula:String){
+    var modelo:String = modelo.uppercase()
+    set(value:String) {
+        field = value.uppercase()
+    }
+
     override fun toString(): String {
         return "Coche matrícula: $matricula, marca: $marca, modelo: $modelo, color: $color, puertas: $puertas, caballos: $caballos"
     }
