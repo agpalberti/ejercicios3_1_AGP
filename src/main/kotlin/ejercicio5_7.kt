@@ -2,7 +2,7 @@
 
 class Coche(var color:String, val marca: String, modelo: String, val caballos:Int, val puertas:Byte, val matricula:String){
     var modelo:String = modelo.uppercase()
-    set(value:String) {
+    set(value) {
         field = value.uppercase()
     }
 
