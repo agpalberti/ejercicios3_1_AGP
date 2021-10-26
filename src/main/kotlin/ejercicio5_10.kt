@@ -12,7 +12,7 @@ class Libro(val titulo: String, val autor: String, val numpag: Int, calificacion
     }
 
     override fun toString(): String {
-        return "\"$titulo\", escrito por $autor."
+        return "\"$titulo\", escrito por: \"$autor\""
     }
 
 }
@@ -30,8 +30,8 @@ class ConjuntoLibros(tamanio: Int) {
                     counter = size
                 } else counter++
             }
-            println("Tu libro ha sido añadido.")
-        } else println("Ya has introducido ese libro.")
+            println("El libro $libro ha sido añadido.")
+        } else println("El libro $libro ya había sido añadido anteriormente.")
     }
 
     fun almacenados(): Int {
@@ -51,8 +51,8 @@ class ConjuntoLibros(tamanio: Int) {
                 counter = size
             } else counter++
         }
-        if (cantidadinicial != almacenados()) println("Tu libro ha sido eliminado con éxito.")
-        else println("Tu libro no se ha encontrado entre la lista.")
+        if (cantidadinicial != almacenados()) println("El libro \"$titulo\" ha sido eliminado con éxito.")
+        else println("El libro \"$titulo\" no se ha encontrado entre la lista.")
     }
 
     fun deleteautor(autor: String) {
@@ -60,8 +60,8 @@ class ConjuntoLibros(tamanio: Int) {
         for (i in 0 until size) {
             if (libros[i]?.autor == autor) libros[i] = null
         }
-        if (cantidadinicial != almacenados()) println("Se ha eliminado ${cantidadinicial - almacenados()} libro(s) con éxito.")
-        else println("No se encontró a ese autor.")
+        if (cantidadinicial != almacenados()) println("Se ha eliminado ${cantidadinicial - almacenados()} libro(s) del autor \"$autor\" con éxito.")
+        else println("No se encontró \"$autor\" entre los autores.")
     }
 
     fun maxmin() {
@@ -75,7 +75,7 @@ class ConjuntoLibros(tamanio: Int) {
 
                 }
             }
-            println("El libro con la calificación más alta es ${libros[max ?: -1]} con una calificación de ${libros[max ?: -1]?.calif} y el libro con la calificación más baja es ${libros[min?: -1]} con una calificación de ${libros[min?: -1]?.calif}.")
+            println("El libro con la calificación más alta es ${libros[max ?: -1]} con una calificación de ${libros[max ?: -1]?.calif} y el libro con la calificación más baja es ${libros[min ?: -1]} con una calificación de ${libros[min ?: -1]?.calif}.")
             //TODO: CONTEMPLAR SI HAY MÁS DE UN LIBRO CON LA MISMA CALIFICACIÓN
         } else if (almacenados() == 1) {
             var counter = 0
@@ -98,7 +98,7 @@ class ConjuntoLibros(tamanio: Int) {
                 if (libros[i] != null) listapos.add(i)
             }
             for (i in 0 until listapos.size) {
-                listalibros += "\n- ${libros[listapos[i]]}"
+                listalibros += "\n- ${libros[listapos[i]]}."
             }
             listalibros
         } else "No hay libros almacenados"
@@ -114,5 +114,8 @@ fun main() {
 
     libreria.add(libro)
     libreria.add(libro2)
-    libreria.maxmin()
+    libreria.delete("Caperucita")
+    libreria.deleteautor("Alex")
+    libreria.add(libro2)
+    println(libreria)
 }
