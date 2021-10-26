@@ -71,10 +71,11 @@ class ConjuntoLibros(tamanio: Int) {
             var max: Int? = null
             for (i in 0 until size) {
                 if (libros[i] != null) {
-                    if ((libros[i]?.calif ?: -1) > max) max = i
-                    if ((libros[i]?.calif ?: -1) < min) min = i
+                    if ((libros[i]?.calif ?: -1) > (max ?: -1)) max = i
+                    if ((libros[i]?.calif ?: 10) < (min ?: 10)) min = i
                 }
             }
+            println("El libro con la calificación más alta es ${libros[max?:0]}") //TODO: CONTEMPLAR SI HAY MÁS DE UN LIBRO CON LA MISMA CALIFICACIÓN
         }
         else if (almacenados() == 1) {
             var counter = 0
@@ -85,7 +86,7 @@ class ConjuntoLibros(tamanio: Int) {
                     counter = size
                 } else counter++
             }
-            println("Sólo hay almacenado un libro. Su calificación es ${libros[position]?.calif}")
+            println("Sólo hay almacenado un libro: ${libros[position]}. Su calificación es ${libros[position]?.calif}")
         }
         else println("No hay libros almacenados")
     }
