@@ -12,7 +12,7 @@ class Libro(val titulo: String, val autor: String, val numpag: Int, calificacion
     }
 
     override fun toString(): String {
-        return "'$titulo', escrito por $autor."
+        return "\"$titulo\", escrito por $autor."
     }
 
 }
@@ -77,7 +77,8 @@ class ConjuntoLibros(tamanio: Int) {
 
                 }
             }
-            println("El libro con la calificación más alta es ${libros[max ?: 0]}") //TODO: CONTEMPLAR SI HAY MÁS DE UN LIBRO CON LA MISMA CALIFICACIÓN
+            println("El libro con la calificación más alta es ${libros[max ?: -1]} con una calificación de ${libros[max ?: -1].calif} y el libro con la calificación más baja es ${libros[min?: -1]} con una calificación de ${libros[min?: -1].calif}.")
+            //TODO: CONTEMPLAR SI HAY MÁS DE UN LIBRO CON LA MISMA CALIFICACIÓN
         } else if (almacenados() == 1) {
             var counter = 0
             var position = 0
