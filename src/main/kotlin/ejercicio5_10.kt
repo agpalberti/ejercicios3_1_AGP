@@ -78,7 +78,7 @@ class ConjuntoLibros(tamanio: Int) {
         }
         else if (almacenados() == 1) {
             var counter = 0
-            var position:Int
+            var position = 0
             while (counter in 0 until size){
                 if (libros[counter] != null) {
                     position = counter
@@ -100,7 +100,5 @@ fun main() {
     val libro2 = Libro("Prueba", "Alex", 100, 10)
 
     libreria.add(libro)
-    libreria.add(libro2)
-    libreria.delete("Caperucita")
     libreria.deleteautor("Alex")
 }
