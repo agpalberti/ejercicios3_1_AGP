@@ -21,8 +21,8 @@ class ConjuntoLibros(tamanio: Int) {
     private val size = tamanio
     var libros = arrayOfNulls<Libro>(size)
 
-    fun add(libro: Libro) {
-        if (libro !in libros) {
+    fun add(libro: Libro): String {
+        return if (libro !in libros) {
             var counter = 0
             while (counter in 0 until size) {
                 if (libros[counter] == null) {
@@ -30,8 +30,8 @@ class ConjuntoLibros(tamanio: Int) {
                     counter = size
                 } else counter++
             }
-            println("El libro $libro ha sido añadido.")
-        } else println("El libro $libro ya había sido añadido anteriormente.")
+            "El libro $libro ha sido añadido."
+        } else "El libro $libro ya había sido añadido anteriormente."
     }
 
     fun almacenados(): Int {
@@ -42,7 +42,7 @@ class ConjuntoLibros(tamanio: Int) {
         return cantidad
     }
 
-    fun delete(titulo: String) {
+    fun delete(titulo: String): String {
         val cantidadinicial = almacenados()
         var counter = 0
         while (counter in 0 until size) {
@@ -51,21 +51,21 @@ class ConjuntoLibros(tamanio: Int) {
                 counter = size
             } else counter++
         }
-        if (cantidadinicial != almacenados()) println("El libro \"$titulo\" ha sido eliminado con éxito.")
-        else println("El libro \"$titulo\" no se ha encontrado entre la lista.")
+        return if (cantidadinicial != almacenados()) "El libro \"$titulo\" ha sido eliminado con éxito."
+        else "El libro \"$titulo\" no se ha encontrado entre la lista."
     }
 
-    fun deleteautor(autor: String) {
+    fun deleteautor(autor: String): String {
         val cantidadinicial = almacenados()
         for (i in 0 until size) {
             if (libros[i]?.autor == autor) libros[i] = null
         }
-        if (cantidadinicial != almacenados()) println("Se ha eliminado ${cantidadinicial - almacenados()} libro(s) del autor \"$autor\" con éxito.")
-        else println("No se encontró \"$autor\" entre los autores.")
+        return if (cantidadinicial != almacenados()) "Se ha eliminado ${cantidadinicial - almacenados()} libro(s) del autor \"$autor\" con éxito."
+        else "No se encontró \"$autor\" entre los autores."
     }
 
-    fun maxmin() {
-        if (almacenados() > 1) {
+    fun maxmin(): String {
+        return if (almacenados() > 1) {
             var min: Int? = null
             var max: Int? = null
             for (i in 0 until size) {
@@ -75,7 +75,7 @@ class ConjuntoLibros(tamanio: Int) {
 
                 }
             }
-            println("El libro con la calificación más alta es ${libros[max ?: -1]} con una calificación de ${libros[max ?: -1]?.calif} y el libro con la calificación más baja es ${libros[min ?: -1]} con una calificación de ${libros[min ?: -1]?.calif}.")
+            "El libro con la calificación más alta es ${libros[max ?: -1]} con una calificación de ${libros[max ?: -1]?.calif} y el libro con la calificación más baja es ${libros[min ?: -1]} con una calificación de ${libros[min ?: -1]?.calif}."
             //TODO: CONTEMPLAR SI HAY MÁS DE UN LIBRO CON LA MISMA CALIFICACIÓN
         } else if (almacenados() == 1) {
             var counter = 0
@@ -86,8 +86,8 @@ class ConjuntoLibros(tamanio: Int) {
                     counter = size
                 } else counter++
             }
-            println("Sólo hay almacenado un libro: ${libros[position]}. Su calificación es ${libros[position]?.calif}")
-        } else println("No hay libros almacenados")
+            "Sólo hay almacenado un libro: ${libros[position]}. Su calificación es ${libros[position]?.calif}"
+        } else "No hay libros almacenados"
     }
 
     override fun toString(): String {
@@ -112,10 +112,10 @@ fun main() {
     val libro = Libro("Caperucita", "JK", 200, 8)
     val libro2 = Libro("Prueba", "Alex", 100, 10)
 
-    libreria.add(libro)
-    libreria.add(libro2)
-    libreria.delete("Caperucita")
-    libreria.deleteautor("Alex")
-    libreria.add(libro2)
+    println(libreria.add(libro))
+    println(libreria.add(libro2))
+    println(libreria.delete("Caperucita"))
+    println(libreria.deleteautor("Alex"))
+    println(libreria.add(libro2))
     println(libreria)
 }

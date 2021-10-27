@@ -45,8 +45,8 @@ class Persona(val DNI: String, val cuentas: MutableList<Cuenta> = mutableListOf(
 
 }
 
-fun saldos(cuenta: Cuenta) {
-    println("Saldo de la cuenta $cuenta: ${cuenta.saldo}")
+fun saldos(cuenta: Cuenta): String {
+    return "Saldo de la cuenta $cuenta: ${cuenta.saldo}"
 }
 
 
@@ -57,21 +57,21 @@ fun main() {
     persona1.addcuenta(cuenta1)
     persona1.addcuenta(cuenta2)
 
-    saldos(cuenta1)
-    saldos(cuenta2)
+    println(saldos(cuenta1))
+    println(saldos(cuenta2))
 
     println("Abono de 1100€ a la cuenta $cuenta1")
     cuenta1.abono(1100.00)
     println("Pago de 750€ a la cuenta $cuenta2")
     cuenta2.pago(750.00)
-    saldos(cuenta1)
-    saldos(cuenta2)
+    println(saldos(cuenta1))
+    println(saldos(cuenta2))
     println(persona1.esmorosa())
 
     println("Transferencia de 500€ de la cuenta $cuenta1 a la cuenta $cuenta2")
     cuenta1.transfer(500.00, cuenta2)
-    saldos(cuenta1)
-    saldos(cuenta2)
+    println(saldos(cuenta1))
+    println(saldos(cuenta2))
 }
 
 
