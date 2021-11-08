@@ -55,6 +55,12 @@ class ConjuntoLibros(tamanio: Int) {
         else "El libro \"$titulo\" no se ha encontrado entre la lista."
     }
 
+    fun eliminar(condition: (Libro?) -> Boolean){
+
+        val pos = libros.indexOfFirst(condition)
+        if (pos>= 0) libros[pos] = null
+    }
+
     fun deleteautor(autor: String): String {
         val cantidadinicial = almacenados()
         for (i in 0 until size) {
@@ -114,8 +120,8 @@ fun main() {
 
     println(libreria.add(libro))
     println(libreria.add(libro2))
-    println(libreria.delete("Caperucita"))
-    println(libreria.deleteautor("Alex"))
+    libreria.eliminar { it?.titulo == "Caperucita" }
+    libreria.eliminar { it?.autor == "Alex" }
     println(libreria.add(libro2))
     println(libreria)
 }
